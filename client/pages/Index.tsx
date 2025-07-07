@@ -428,7 +428,7 @@ export default function Index() {
           </div>
 
           <div className="overflow-x-auto scrollbar-hide -mx-5 px-5">
-            <div className="flex gap-4 min-w-max">
+            <div className="flex gap-2 min-w-max">
               {crashGames.map((game, index) => (
                 <motion.button
                   key={game.id}
