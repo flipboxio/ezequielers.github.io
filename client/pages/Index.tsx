@@ -360,7 +360,7 @@ export default function Index() {
                     )}
 
                     {game.id === "zirk-stream" && (
-                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
                         <div className="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-30" />
                       </div>
                     )}
