@@ -368,21 +368,21 @@ export default function Index() {
                     {game.id === "zirk-event" && (
                       <>
                         <div className="absolute -left-10 -top-8 w-24 h-24 bg-purple-600 rounded-full opacity-50 blur-[24px]" />
-                        <div className="absolute right-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
+                        <div className="absolute left-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d962cca45219bbfc65c846c00cd643ba9b8652"
                           alt="Event Character 1"
-                          className="absolute right-4 top-4 w-[56px] h-[65px] object-cover"
+                          className="absolute left-4 top-4 w-[56px] h-[65px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f9e7a756884184da59bd95a23154412581daec3"
                           alt="Event Character 2"
-                          className="absolute right-4 bottom-2 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 bottom-2 w-[43px] h-[43px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/b3d6f53c812b0b04c1a21b66062d835030a938c6"
                           alt="Event Character 3"
-                          className="absolute right-4 -top-7 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 -top-7 w-[43px] h-[43px] object-cover"
                         />
                       </>
                     )}
