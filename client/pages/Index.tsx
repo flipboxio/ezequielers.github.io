@@ -207,7 +207,7 @@ export default function Index() {
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/068a262e4e1c39345b4089ac9bce61d6724b5a20"
               alt="Starz Logo"
-              className="h-12 object-contain"
+              className="h-8 object-contain"
             />
           </button>
 
