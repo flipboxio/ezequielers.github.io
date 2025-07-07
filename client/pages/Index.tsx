@@ -127,55 +127,55 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header Section with Stars */}
-      <div className="relative px-5 py-6 overflow-hidden">
-        {/* Animated Stars Background - Only in Header */}
-        {Array.from({ length: 30 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white opacity-60"
-            style={{
-              width: 1 + Math.random() * 2,
-              height: 1 + Math.random() * 2,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0.3, 1, 0.3],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 2,
-              delay: Math.random() * 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Animated Stars Background - Full Screen */}
+      {Array.from({ length: 50 }, (_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-white opacity-60 z-0"
+          style={{
+            width: 1 + Math.random() * 2,
+            height: 1 + Math.random() * 2,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0.3, 1, 0.3],
+            scale: [0.8, 1.2, 0.8],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            delay: Math.random() * 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
 
-        {/* Moving Stars in Header */}
-        {Array.from({ length: 5 }, (_, i) => (
-          <motion.div
-            key={`moving-${i}`}
-            className="absolute w-1 h-1 rounded-full bg-white opacity-40"
-            initial={{
-              x: -10,
-              y: Math.random() * 100,
-            }}
-            animate={{
-              x: 400,
-              y: Math.random() * 100,
-            }}
-            transition={{
-              duration: 6 + Math.random() * 3,
-              delay: i * 1.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
+      {/* Moving Stars - Full Screen */}
+      {Array.from({ length: 8 }, (_, i) => (
+        <motion.div
+          key={`moving-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-white opacity-40 z-0"
+          initial={{
+            x: -10,
+            y: Math.random() * window.innerHeight,
+          }}
+          animate={{
+            x: window.innerWidth + 10,
+            y: Math.random() * window.innerHeight,
+          }}
+          transition={{
+            duration: 6 + Math.random() * 3,
+            delay: i * 1.5,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
 
+      {/* Header Section */}
+      <div className="relative px-5 py-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -207,7 +207,7 @@ export default function Index() {
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/068a262e4e1c39345b4089ac9bce61d6724b5a20"
               alt="Starz Logo"
-              className="h-12 object-contain"
+              className="h-8 object-contain"
             />
           </button>
 
@@ -350,17 +350,17 @@ export default function Index() {
                     {game.id === "meet-cody" && (
                       <>
                         <div className="absolute -left-4 top-10 w-20 h-20 bg-red-500 rounded-full opacity-20 blur-[20px]" />
-                        <div className="absolute right-35 -top-8 w-24 h-24 bg-orange-400 rounded-full opacity-30 blur-[12px]" />
+                        <div className="absolute left-8 -top-8 w-24 h-24 bg-orange-400 rounded-full opacity-30 blur-[12px]" />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/580452c0d5cd21d8b2a2fce7ef353397ed656b67"
                           alt="Cody Character"
-                          className="absolute right-4 -top-1 w-[92px] h-[103px] object-cover"
+                          className="absolute left-4 -top-1 w-[92px] h-[103px] object-cover"
                         />
                       </>
                     )}
 
                     {game.id === "zirk-stream" && (
-                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
                         <div className="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-30" />
                       </div>
                     )}
@@ -368,21 +368,21 @@ export default function Index() {
                     {game.id === "zirk-event" && (
                       <>
                         <div className="absolute -left-10 -top-8 w-24 h-24 bg-purple-600 rounded-full opacity-50 blur-[24px]" />
-                        <div className="absolute right-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
+                        <div className="absolute left-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d962cca45219bbfc65c846c00cd643ba9b8652"
                           alt="Event Character 1"
-                          className="absolute right-4 top-4 w-[56px] h-[65px] object-cover"
+                          className="absolute left-4 top-4 w-[56px] h-[65px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f9e7a756884184da59bd95a23154412581daec3"
                           alt="Event Character 2"
-                          className="absolute right-4 bottom-2 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 bottom-2 w-[43px] h-[43px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/b3d6f53c812b0b04c1a21b66062d835030a938c6"
                           alt="Event Character 3"
-                          className="absolute right-4 -top-7 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 -top-7 w-[43px] h-[43px] object-cover"
                         />
                       </>
                     )}
@@ -390,21 +390,21 @@ export default function Index() {
                     {game.id === "special-event" && (
                       <>
                         <div className="absolute -left-10 -top-8 w-24 h-24 bg-purple-600 rounded-full opacity-50 blur-[24px]" />
-                        <div className="absolute right-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
+                        <div className="absolute left-4 top-4 w-36 h-36 bg-pink-400 rounded-full opacity-30 blur-[33px]" />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d962cca45219bbfc65c846c00cd643ba9b8652"
                           alt="Event Character 1"
-                          className="absolute right-4 top-4 w-[56px] h-[65px] object-cover"
+                          className="absolute left-4 top-4 w-[56px] h-[65px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f9e7a756884184da59bd95a23154412581daec3"
                           alt="Event Character 2"
-                          className="absolute right-4 bottom-2 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 bottom-2 w-[43px] h-[43px] object-cover"
                         />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/b3d6f53c812b0b04c1a21b66062d835030a938c6"
                           alt="Event Character 3"
-                          className="absolute right-4 -top-7 w-[43px] h-[43px] object-cover"
+                          className="absolute left-4 -top-7 w-[43px] h-[43px] object-cover"
                         />
                       </>
                     )}
@@ -428,7 +428,7 @@ export default function Index() {
           </div>
 
           <div className="overflow-x-auto scrollbar-hide -mx-5 px-5">
-            <div className="flex gap-4 min-w-max">
+            <div className="flex gap-2 min-w-max">
               {crashGames.map((game, index) => (
                 <motion.button
                   key={game.id}
