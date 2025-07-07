@@ -127,55 +127,55 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header Section with Stars */}
-      <div className="relative px-5 py-6 overflow-hidden">
-        {/* Animated Stars Background - Only in Header */}
-        {Array.from({ length: 30 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white opacity-60"
-            style={{
-              width: 1 + Math.random() * 2,
-              height: 1 + Math.random() * 2,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0.3, 1, 0.3],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 2,
-              delay: Math.random() * 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Animated Stars Background - Full Screen */}
+      {Array.from({ length: 50 }, (_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-white opacity-60 z-0"
+          style={{
+            width: 1 + Math.random() * 2,
+            height: 1 + Math.random() * 2,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0.3, 1, 0.3],
+            scale: [0.8, 1.2, 0.8],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            delay: Math.random() * 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
 
-        {/* Moving Stars in Header */}
-        {Array.from({ length: 5 }, (_, i) => (
-          <motion.div
-            key={`moving-${i}`}
-            className="absolute w-1 h-1 rounded-full bg-white opacity-40"
-            initial={{
-              x: -10,
-              y: Math.random() * 100,
-            }}
-            animate={{
-              x: 400,
-              y: Math.random() * 100,
-            }}
-            transition={{
-              duration: 6 + Math.random() * 3,
-              delay: i * 1.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
+      {/* Moving Stars - Full Screen */}
+      {Array.from({ length: 8 }, (_, i) => (
+        <motion.div
+          key={`moving-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-white opacity-40 z-0"
+          initial={{
+            x: -10,
+            y: Math.random() * window.innerHeight,
+          }}
+          animate={{
+            x: window.innerWidth + 10,
+            y: Math.random() * window.innerHeight,
+          }}
+          transition={{
+            duration: 6 + Math.random() * 3,
+            delay: i * 1.5,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
 
+      {/* Header Section */}
+      <div className="relative px-5 py-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
