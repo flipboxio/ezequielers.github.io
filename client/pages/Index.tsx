@@ -350,11 +350,11 @@ export default function Index() {
                     {game.id === "meet-cody" && (
                       <>
                         <div className="absolute -left-4 top-10 w-20 h-20 bg-red-500 rounded-full opacity-20 blur-[20px]" />
-                        <div className="absolute right-35 -top-8 w-24 h-24 bg-orange-400 rounded-full opacity-30 blur-[12px]" />
+                        <div className="absolute left-8 -top-8 w-24 h-24 bg-orange-400 rounded-full opacity-30 blur-[12px]" />
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/580452c0d5cd21d8b2a2fce7ef353397ed656b67"
                           alt="Cody Character"
-                          className="absolute right-4 -top-1 w-[92px] h-[103px] object-cover"
+                          className="absolute left-4 -top-1 w-[92px] h-[103px] object-cover"
                         />
                       </>
                     )}
