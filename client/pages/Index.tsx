@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
 import { Plus, ArrowLeft, Search, Home } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Index() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 1200,
+    height: typeof window !== "undefined" ? window.innerHeight : 800,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const gameCharacters = [
     {
       name: "Roxz",
@@ -159,11 +177,11 @@ export default function Index() {
           className="absolute w-1 h-1 rounded-full bg-white opacity-40 z-0"
           initial={{
             x: -10,
-            y: Math.random() * window.innerHeight,
+            y: Math.random() * windowSize.height,
           }}
           animate={{
-            x: window.innerWidth + 10,
-            y: Math.random() * window.innerHeight,
+            x: windowSize.width + 10,
+            y: Math.random() * windowSize.height,
           }}
           transition={{
             duration: 6 + Math.random() * 3,
@@ -175,25 +193,27 @@ export default function Index() {
       ))}
 
       {/* Header Section */}
-      <div className="relative px-5 py-6 z-10">
+      <div className="relative px-4 sm:px-5 py-4 sm:py-6 z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center justify-between relative z-10"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
             <button
               onClick={handleProfileClick}
-              className="text-left hover:opacity-80 transition-opacity"
+              className="text-left hover:opacity-80 transition-opacity min-w-0"
             >
-              <div className="text-white font-medium text-sm">
+              <div className="text-white font-medium text-xs sm:text-sm truncate">
                 Oliver Bennet
               </div>
-              <div className="text-white font-medium text-sm">$37,657.00</div>
+              <div className="text-white font-medium text-xs sm:text-sm">
+                $37,657.00
+              </div>
             </button>
             <button
               onClick={() => handleGameClick("add-funds")}
-              className="w-5 h-5 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+              className="w-5 h-5 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0"
             >
               <Plus size={12} className="text-black" />
             </button>
@@ -207,24 +227,26 @@ export default function Index() {
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/068a262e4e1c39345b4089ac9bce61d6724b5a20"
               alt="Starz Logo"
-              className="h-8 object-contain"
+              className="h-6 sm:h-8 object-contain"
             />
           </button>
 
-          <button
-            onClick={handleProfileClick}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9abfbeea575d8eb1f04c7feb67db1b93c5562a3"
-              alt="Profile"
-              className="w-12 h-12 rounded-full object-cover"
-            />
-          </button>
+          <div className="flex-1 flex justify-end">
+            <button
+              onClick={handleProfileClick}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9abfbeea575d8eb1f04c7feb67db1b93c5562a3"
+                alt="Profile"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+              />
+            </button>
+          </div>
         </motion.div>
       </div>
 
-      <div className="px-5 pb-20">
+      <div className="px-4 sm:px-5 pb-24 sm:pb-20">
         {/* Games Made For You Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -233,13 +255,15 @@ export default function Index() {
           className="mb-6"
         >
           <div className="flex items-center gap-1 mb-4">
-            <span className="text-white font-medium text-lg">Games</span>
-            <span className="text-white/80 font-medium text-lg">
+            <span className="text-white font-medium text-base sm:text-lg">
+              Games
+            </span>
+            <span className="text-white/80 font-medium text-base sm:text-lg">
               made for you
             </span>
           </div>
 
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2 -mx-5 px-5">
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2 -mx-4 sm:-mx-5 px-4 sm:px-5">
             {gameCharacters.map((character, index) => (
               <motion.button
                 key={character.name}
@@ -251,14 +275,14 @@ export default function Index() {
                 whileTap={{ scale: 0.95 }}
                 className="flex-shrink-0 hover:opacity-90 transition-all"
               >
-                <div className="relative w-20 h-24 rounded-3xl overflow-hidden">
+                <div className="relative w-16 h-20 sm:w-20 sm:h-24 rounded-3xl overflow-hidden">
                   <img
                     src={character.image}
                     alt={character.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-white text-black text-xs font-medium px-2 py-1 rounded-full">
+                  <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-white text-black text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs">
                       {character.name}
                     </div>
                   </div>
@@ -303,20 +327,22 @@ export default function Index() {
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-1">
-              <span className="text-white font-medium text-lg">Most</span>
-              <span className="text-white/80 font-medium text-lg">
+              <span className="text-white font-medium text-base sm:text-lg">
+                Most
+              </span>
+              <span className="text-white/80 font-medium text-base sm:text-lg">
                 popular games
               </span>
             </div>
             <button
               onClick={() => handleGameClick("see-all-popular")}
-              className="text-white/80 text-sm hover:text-white transition-colors"
+              className="text-white/80 text-xs sm:text-sm hover:text-white transition-colors"
             >
               See all
             </button>
           </div>
 
-          <div className="overflow-x-auto scrollbar-hide -mx-5 px-5">
+          <div className="overflow-x-auto scrollbar-hide -mx-4 sm:-mx-5 px-4 sm:px-5">
             <div className="flex gap-3 min-w-max">
               {popularGames.map((game, index) => (
                 <motion.button
@@ -330,16 +356,16 @@ export default function Index() {
                   className="flex-shrink-0 hover:opacity-90 transition-all"
                 >
                   <div
-                    className={`bg-gradient-to-r ${game.bgGradient} rounded-2xl p-4 w-[263px] h-[102px] relative overflow-hidden`}
+                    className={`bg-gradient-to-r ${game.bgGradient} rounded-2xl p-3 sm:p-4 w-[240px] sm:w-[263px] h-[90px] sm:h-[102px] relative overflow-hidden`}
                   >
                     <div className="relative z-10">
-                      <div className="text-white font-bold text-[19px] leading-tight">
+                      <div className="text-white font-bold text-base sm:text-[19px] leading-tight">
                         {game.title}
                       </div>
-                      <div className="text-white font-bold text-[19px] leading-tight">
+                      <div className="text-white font-bold text-base sm:text-[19px] leading-tight">
                         {game.subtitle}
                       </div>
-                      <div className="text-white/50 text-xs mt-1">
+                      <div className="text-white/50 text-[11px] sm:text-xs mt-1">
                         {game.description.split(" ")[0]}{" "}
                         <span className="text-white font-semibold">
                           {game.description.split(" ").slice(1).join(" ")}
@@ -423,11 +449,15 @@ export default function Index() {
           className="mb-6"
         >
           <div className="flex items-center gap-1 mb-4">
-            <span className="text-white font-medium text-lg">Crash</span>
-            <span className="text-white/80 font-medium text-lg">Games</span>
+            <span className="text-white font-medium text-base sm:text-lg">
+              Crash
+            </span>
+            <span className="text-white/80 font-medium text-base sm:text-lg">
+              Games
+            </span>
           </div>
 
-          <div className="overflow-x-auto scrollbar-hide -mx-5 px-5">
+          <div className="overflow-x-auto scrollbar-hide -mx-4 sm:-mx-5 px-4 sm:px-5">
             <div className="flex gap-2 min-w-max">
               {crashGames.map((game, index) => (
                 <motion.button
@@ -440,7 +470,7 @@ export default function Index() {
                   whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0 hover:opacity-90 transition-all"
                 >
-                  <div className="w-[84px] h-[84px] rounded-full overflow-hidden relative">
+                  <div className="w-[70px] h-[70px] sm:w-[84px] sm:h-[84px] rounded-full overflow-hidden relative">
                     <img
                       src={game.image}
                       alt={game.name}
@@ -483,25 +513,25 @@ export default function Index() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
-        className="fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-xl rounded-t-3xl p-4"
+        className="fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-xl rounded-t-3xl p-3 sm:p-4 safe-area-inset-bottom"
       >
-        <div className="flex items-center justify-between max-w-sm mx-auto px-8">
-          <button className="p-3">
-            <Home size={24} className="text-blue-500" />
+        <div className="flex items-center justify-between max-w-sm mx-auto px-4 sm:px-8">
+          <button className="p-2 sm:p-3">
+            <Home size={20} className="text-blue-500 sm:w-6 sm:h-6" />
           </button>
-          <button className="p-3">
-            <ArrowLeft size={24} className="text-white/60" />
+          <button className="p-2 sm:p-3">
+            <ArrowLeft size={20} className="text-white/60 sm:w-6 sm:h-6" />
           </button>
-          <button className="p-3">
-            <Search size={24} className="text-white/60" />
+          <button className="p-2 sm:p-3">
+            <Search size={20} className="text-white/60 sm:w-6 sm:h-6" />
           </button>
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9abfbeea575d8eb1f04c7feb67db1b93c5562a3"
             alt="Profile"
-            className="w-8 h-8 rounded-full object-cover"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover"
           />
         </div>
-        <div className="w-32 h-1 bg-white/30 rounded-full mx-auto mt-3"></div>
+        <div className="w-24 sm:w-32 h-1 bg-white/30 rounded-full mx-auto mt-2 sm:mt-3"></div>
       </motion.div>
     </div>
   );
